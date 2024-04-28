@@ -4,4 +4,15 @@
   left: 0;
   width: 100%;
   height: 80px;
+  z-index: 2;
+}
+.brand {
+  font-size: 32px;
+}
+.spacer {
+  flex: 1 1 auto;
+}
+.navbar-options {
+  margin-right: 35px;
+  align-content:right;
 }

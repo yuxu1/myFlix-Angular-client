@@ -1,27 +1,31 @@
 <mat-toolbar class="navbar">
-  <button
+  <button class="brand"
     mat-button
     (click)="openMoviesView()"
   >
     myFlix
   </button>
-  <button
-    mat-button
-    (click)="openMoviesView()"
-  >
-    Movies
-  </button>
-  <button
-    mat-button
-    (click)="openUserProfile()"
-  >
-    Profile
-  </button>
-  <button
-    mat-button
-    (click)="logout()"
-  >
-    Logout
-  </button>
+  <span class="spacer"></span>
+  <div class="navbar-options">
+    <button
+      mat-button
+      (click)="openMoviesView()"
+    >
+      Movies
+    </button>
+    <button
+      mat-button
+      (click)="openUserProfile()"
+    >
+      Profile
+    </button>
+    <button
+      mat-button
+      (click)="logout()"
+    >
+      Logout
+    </button>
+    </div>
+
   
 </mat-toolbar>
