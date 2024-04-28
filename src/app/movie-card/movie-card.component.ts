@@ -16,8 +16,6 @@ export class MovieCardComponent implements OnInit {
   movies: any[] = [];
   FavoriteMovies: any[] = []
   user: any = {};
-  userData = { Username: '', FavoriteMovies: []};
-  isFavMovie: boolean = false;
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -72,28 +70,23 @@ export class MovieCardComponent implements OnInit {
 
   getFavoriteMovies(): void {
     this.user = this.fetchApiData.getUser();
-    this.userData.FavoriteMovies = this.user.FavoriteMovies;
     this.FavoriteMovies = this.user.FavoriteMovies;
     console.log(this.FavoriteMovies);
   }
 
-  isFavorited(movie: any): any {
-    const MovieID = movie._id;
-    if (this.FavoriteMovies.some((movie) => movie === MovieID)) {
-      return true;
-    } else {
-      return false;
-    }
+  //function to check if a movie is favorited by the user
+  isFavorited(movieID: string): boolean {
+    return this.user.FavoriteMovies.indexOf(movieID) >= 0;
   }
 
-  toggleFavorite(movie: any): void {
+  //function to add or remove a movie to/from favorites by clicking icon button
+  toggleFavorite(movie: string): void {
     const isFavorited = this.isFavorited(movie);
     isFavorited ? this.removeFavMovie(movie): this.addFavMovie(movie);
   }
 
+  //function to remove a movie from favorites
   removeFavMovie(movie: any): void {
-    this.user = this.fetchApiData.getUser();
-    this.userData.Username = this.user.Username;
     this.fetchApiData.removeFavorites(movie).subscribe((result) => {
       localStorage.setItem('user',JSON.stringify(result));
       this.getFavoriteMovies();
@@ -103,9 +96,9 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  addFavMovie(movie:any): void {
+  //function to add a movie to favorites
+  addFavMovie(movie: any): void {
     this.user = this.fetchApiData.getUser();
-    this.userData.Username = this.user.Username;
     this.fetchApiData.addFavorites(movie).subscribe((result) => {
       localStorage.setItem('user',JSON.stringify(result));
       this.getFavoriteMovies();
