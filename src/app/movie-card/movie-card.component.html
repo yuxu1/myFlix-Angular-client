@@ -7,22 +7,31 @@
           <button
               mat-button
               color="primary"
+              (click)="openGenreDialog(movie.Genre.Name, movie.Genre.Description)"
           >
               Genre
           </button>
           <button
               mat-button
               color="primary"
+              (click)="openDirectorDialog(movie.Director.Name, movie.Director.Bio, movie.Director.Birthyear, movie.Director.Deathyear)"
           >
               Director
           </button>
           <button
               mat-button
               color="primary"
+              (click)="openSynopsisDialog(movie.Description)"
           >
               Synopsis
           </button>
-          <mat-icon>favorite_border</mat-icon>
+          <button
+            mat-icon-button
+            (click)="toggleFavorite(movie)"
+          >
+            <mat-icon *ngIf="!isFavorited(movie)">favorite_border</mat-icon>
+            <mat-icon *ngIf="isFavorited(movie)">favorite</mat-icon>
+          </button>
       </mat-card-actions>
   </mat-card>
 </div>
