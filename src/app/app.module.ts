@@ -23,6 +23,9 @@ import { RouterModule, Routes } from '@angular/router';
 //for implementing Add to Favorites icon
 import { MatIconModule } from '@angular/material/icon';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { GenreDetailsComponent } from './genre-details/genre-details.component';
+import { DirectorDetailsComponent } from './director-details/director-details.component';
 
 //define routing
 const appRoutes: Routes = [
@@ -39,7 +42,10 @@ const appRoutes: Routes = [
     UserLoginFormComponent,
     MovieCardComponent,
     WelcomePageComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    MovieDetailsComponent,
+    GenreDetailsComponent,
+    DirectorDetailsComponent
   ],
   imports: [
     BrowserModule,
