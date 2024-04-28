@@ -48,7 +48,7 @@ export class UserProfileComponent implements OnInit{
   //function to retrieve favorite movies
   getFavMovies(): void {
     this.user = this.fetchApiData.getUser();
-   // this.userData.FavoriteMovies = this.user.FavoriteMovies;
+    this.userData.FavoriteMovies = this.user.FavoriteMovies;
     this.FavoriteMovies = this.user.FavoriteMovies;
     console.log(this.FavoriteMovies);
   }
