@@ -1,0 +1,49 @@
+.user-profile-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+.user-info-card {
+  width: 20%;
+  min-width:fit-content;
+  padding: 25px;
+}
+
+.update-user-info-card {
+  width: 60%;
+  padding: 25px;
+}
+
+.form-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-profile {
+  margin: 2px;
+}
+
+.profile-headers {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 30px;
+}
+
+.favorite-movies {
+  justify-content: center;
+  text-align: center;
+  width:90%
+}
+.movie-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.movie-cards {
+  margin: 15px;
+  width:350px;
+}

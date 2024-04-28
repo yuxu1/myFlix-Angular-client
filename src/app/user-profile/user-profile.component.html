@@ -1,50 +1,58 @@
+<app-nav-bar></app-nav-bar>
 <div class="user-profile-container">
   <mat-card class="user-info-card">
-    <mat-card-header>
-      <mat-card-title>{{userData.Username}}</mat-card-title>
+    <mat-card-header class="profile-headers">
+      <mat-card-title>{{user.Username}}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <p>Email: {{userData.Email}}</p>
-      <p>Birthday: {{userData.Birthday | date:'longDate'}}</p>
+      <p>Email: {{user.Email}}</p>
+      <p>Birthday: {{user.Birthday | date:'longDate'}}</p>
     </mat-card-content>
   </mat-card>
 
   <mat-card class="update-user-info-card">
-    <mat-card-header>
+    <mat-card-header class="profile-headers">
       <mat-card-title>Update Profile</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <form>
         <label>Username</label>
-        <mat-form-field>
+        <mat-form-field class="form-input">
           <input
             matInput
-            [(ngModel)]="userData.Username"
+            [(ngModel)]="user.Username"
             placeholder="Username"
             type="text"
-            name="Username"
             required
           >
         </mat-form-field>
         <label>Email</label>
-        <mat-form-field>
+        <mat-form-field class="form-input">
           <input
             matInput
-            [(ngModel)]="userData.Email"
+            [(ngModel)]="user.Email"
             placeholder="Email"
             type="email"
-            name="Email"
+            required
+          >
+        </mat-form-field>
+        <label>Password</label>
+        <mat-form-field class="form-input">
+          <input
+            matInput
+            [(ngModel)]="user.Password"
+            placeholder="Password"
+            type="password"
             required
           >
         </mat-form-field>
         <label>Birthday</label>
-        <mat-form-field>
+        <mat-form-field class="form-input">
           <input
             matInput
-            [(ngModel)]="userData.Birthday"
+            [(ngModel)]="user.Birthday"
             placeholder="Birthday"
             type="date"
-            name="Birthday"
             required
           >
         </mat-form-field>
@@ -72,16 +80,17 @@
     </mat-card-content>
   </mat-card>
 
-  <div>
+  <div class="favorite-movies">
     <div>
-      <h3>Favorite Movies</h3>
+      <h2>Favorite Movies</h2>
+      <!-- show message only if no movies in favorites -->
       <div *ngIf="FavoriteMovies.length === 0" style="font-size:18px;">
         <p>You don't have any favorite movies yet!</p>
       </div>
     </div>
-
+    <!-- movie cards displaying user's favorited movies -->
     <div class="movie-card-container">
-      <mat-card *ngFor="let movie of FavoriteMovies;">
+      <mat-card *ngFor="let movie of FavoriteMovies;" class="movie-cards">
         <img mat-card-image src={{movie.ImageUrl}} alt={{movie.Title}}/>
         <mat-card-actions>
           <button
