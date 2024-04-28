@@ -89,16 +89,18 @@ export class FetchApiDataService {
   }
 
   //making the api call for the get (one) user endpoint
-  getSingleUser(username: string): Observable<any> {
-    const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'users/' + username, {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + token,
-      })
-    }).pipe(
-      map(this.extractResponseData),
-      catchError(this.handleError)
-    );
+  getUser(): Observable<any> {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    return user;
+    // const token = localStorage.getItem('token');
+    // return this.http.get(apiUrl + 'users/' + username, {
+    //   headers: new HttpHeaders({
+    //     Authorization: 'Bearer ' + token,
+    //   })
+    // }).pipe(
+    //   map(this.extractResponseData),
+    //   catchError(this.handleError)
+    // );
   }
 
   //making the api call for the get favorite movies for a user endpoint
