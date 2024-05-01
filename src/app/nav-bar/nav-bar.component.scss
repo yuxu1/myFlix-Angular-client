@@ -1,10 +1,11 @@
-.navbar {
+.navbar-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 80px;
   z-index: 2;
+  background-color: #a1e3ff;
 }
 .brand {
   font-size: 32px;

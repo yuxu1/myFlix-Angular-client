@@ -6,7 +6,7 @@
     </mat-card-header>
     <mat-card-content>
       <p>Email: {{user.Email}}</p>
-      <p>Birthday: {{user.Birthday | date:'longDate'}}</p>
+      <p>Birthday: {{user.Birthday.substring(0,10)}}</p>
     </mat-card-content>
   </mat-card>
 
@@ -21,7 +21,6 @@
           <input
             matInput
             [(ngModel)]="userData.Username"
-            placeholder="Username"
             type="text"
             name="Username"
             required
@@ -32,7 +31,6 @@
           <input
             matInput
             [(ngModel)]="userData.Email"
-            placeholder="Email"
             type="email"
             name="Email"
             required
@@ -43,10 +41,8 @@
           <input
             matInput
             [(ngModel)]="userData.Password"
-            placeholder="Password"
             type="password"
             name="Password"
-            required
           >
         </mat-form-field>
         <label>Birthday</label>
@@ -54,10 +50,8 @@
           <input
             matInput
             [(ngModel)]="userData.Birthday"
-            placeholder="Birthday"
             type="date"
             name="Birthday"
-            required
           >
         </mat-form-field>
       </form>
@@ -88,7 +82,7 @@
     <div>
       <h2>Favorite Movies</h2>
       <!-- show message only if no movies in favorites -->
-      <div *ngIf="favoriteMovies.length === 0" style="font-size:18px;">
+      <div *ngIf="favoriteMovies.length === 0" class="empty-message">
         <p>You don't have any favorite movies yet!</p>
       </div>
     </div>

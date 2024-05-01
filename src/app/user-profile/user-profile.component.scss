@@ -3,13 +3,19 @@
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 80px;
+  background-color: #1f1f1f;
 }
 .user-info-card {
+  background-color: #1f1f1f;
+  color:white;
   width: 20%;
   min-width:fit-content;
   padding: 25px;
+  border-color: white;
 }
 .update-user-info-card {
+  background-color: #1f1f1f;
+  color:white;
   width: 60%;
   padding: 25px;
 }
@@ -24,11 +30,19 @@
   margin-top: 5px;
   margin-bottom: 10px;
   font-size: 30px;
+  color:white;
 }
 .favorite-movies {
   justify-content: center;
   text-align: center;
   width:90%
+}
+h2 {
+  color:white;
+}
+.empty-message {
+  font-size: 18px;
+  color:white;
 }
 .movie-card-container {
   display: flex;
@@ -41,6 +55,7 @@
   margin: 15px;
   width: 300px;
   height: 500px;
+  border-radius: 5px;
 }
 .movie-cards img {
   width: 100%;

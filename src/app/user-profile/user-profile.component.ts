@@ -51,13 +51,11 @@ export class UserProfileComponent implements OnInit{
     this.user = this.fetchApiData.getUser();
     this.userData.FavoriteMovies = this.user.FavoriteMovies;
     this.favoriteMovies = this.user.FavoriteMovies;
-    console.log('result of getFavMovies:', this.favoriteMovies);
   }
 
   //function to update user information
   updateUser(): void {
     this.fetchApiData.editUser(this.userData).subscribe((result) => {
-      console.log('User updated successfully:', result);
       localStorage.setItem('user',JSON.stringify(result));
       this.snackbar.open('user updated successfully', 'OK', {
         duration: 3000
@@ -89,7 +87,6 @@ export class UserProfileComponent implements OnInit{
   getMovies():void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
-      console.log(this.movies);
       return this.movies;
     });
   }
