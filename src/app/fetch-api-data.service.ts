@@ -17,7 +17,6 @@ export class FetchApiDataService {
   
   // Making the api call for the user registration endpoint
   public userRegistration(userDetails: any): Observable<any> {
-    console.log(userDetails);
     return this.http.post(apiUrl + 'users', userDetails).pipe(
     catchError(this.handleError)
     );
@@ -25,7 +24,6 @@ export class FetchApiDataService {
   
   //making the api call for the user login endpoint
   public userLogin(userDetails: any): Observable<any> {
-    console.log(userDetails);
     return this.http.post(apiUrl + 'login', userDetails).pipe(
       catchError(this.handleError)
     );
@@ -92,15 +90,6 @@ export class FetchApiDataService {
   getUser(): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     return user;
-    // const token = localStorage.getItem('token');
-    // return this.http.get(apiUrl + 'users/' + username, {
-    //   headers: new HttpHeaders({
-    //     Authorization: 'Bearer ' + token,
-    //   })
-    // }).pipe(
-    //   map(this.extractResponseData),
-    //   catchError(this.handleError)
-    // );
   }
 
   //making the api call for the get favorite movies for a user endpoint
@@ -135,7 +124,6 @@ export class FetchApiDataService {
 
   //making the api call to the edit user endpoint
   editUser(userDetails: any): Observable<any> {
-    console.log(userDetails);
     const token = localStorage.getItem('token');
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     return this.http.put(apiUrl + 'users/' + user.Username, userDetails, {
