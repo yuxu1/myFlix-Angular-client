@@ -18,7 +18,7 @@ export class UserProfileComponent implements OnInit{
 
   user: any = {};
   movies: any[] = [];
-  FavoriteMovies: any[] = [];
+  favoriteMovies: any[] = [];
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -40,8 +40,9 @@ export class UserProfileComponent implements OnInit{
     this.userData.Email = this.user.Email;
     this.userData.Birthday = this.user.Birthday;
     this.userData.Password = this.user.Password;
+    this.userData.FavoriteMovies = this.user.FavoriteMovies;
     this.fetchApiData.getAllMovies().subscribe((result) => {
-      this.FavoriteMovies = result.filter((movie: any) => this.user.FavoriteMovies.includes(movie._id));
+      this.favoriteMovies = result.filter((movie: any) => this.user.FavoriteMovies.includes(movie._id));
     });
   }
 
@@ -49,8 +50,8 @@ export class UserProfileComponent implements OnInit{
   getFavMovies(): void {
     this.user = this.fetchApiData.getUser();
     this.userData.FavoriteMovies = this.user.FavoriteMovies;
-    this.FavoriteMovies = this.user.FavoriteMovies;
-    console.log(this.FavoriteMovies);
+    this.favoriteMovies = this.user.FavoriteMovies;
+    console.log('result of getFavMovies:', this.favoriteMovies);
   }
 
   //function to update user information
@@ -121,6 +122,19 @@ export class UserProfileComponent implements OnInit{
         Deathyear: deathyear
       },
       width: '480px'
+    });
+  }
+
+  removeFav(movie: any): void {
+    this.user = this.fetchApiData.getUser();
+    this.userData.Username = this.user.Username;
+    this.fetchApiData.removeFavorites(movie).subscribe((result) => {
+      localStorage.setItem('user',JSON.stringify(result));
+      this.getFavMovies();
+      this.getUserProfile();
+      this.snackbar.open('Movie has been removed from favorites','OK', {
+        duration: 5000
+      });
     });
   }
 }

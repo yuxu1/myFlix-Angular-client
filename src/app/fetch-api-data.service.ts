@@ -118,10 +118,11 @@ export class FetchApiDataService {
   }
 
   //making the api call for the add a movie to favorites endpoint
-  addFavorites(movieID: string): Observable<any> {
+  addFavorites(movie: any): Observable<any> {
     const token = localStorage.getItem('token');
+    console.log('token:' + token);
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-    return this.http.post(apiUrl + 'users/' + user.Username + '/movies/' + movieID, {
+    return this.http.post(apiUrl + 'users/' + user.Username + '/movies/' + movie._id, null, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       })
@@ -130,6 +131,7 @@ export class FetchApiDataService {
       catchError(this.handleError)
     );
   }
+
 
   //making the api call to the edit user endpoint
   editUser(userDetails: any): Observable<any> {
@@ -161,10 +163,10 @@ export class FetchApiDataService {
   }
 
   //making the api call to the delete a movie from a user's favorites endpoint
-  removeFavorites(movieID: string): Observable<any> {
+  removeFavorites(movie: any): Observable<any> {
     const token = localStorage.getItem('token');
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-    return this.http.delete(apiUrl + 'users/' + user.Username + '/movies/' + movieID, {
+    return this.http.delete(apiUrl + 'users/' + user.Username + '/movies/' + movie._id, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       })
@@ -180,7 +182,7 @@ export class FetchApiDataService {
     console.error('Some error occurred:', error.error.message);
     } else {
     console.error(
-        `Error Status code ${error.status}, ` +
+        `Error Status code ${error}, ` +
         `Error body is: ${error.error}`);
     }
     return throwError(

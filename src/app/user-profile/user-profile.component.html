@@ -88,37 +88,50 @@
     <div>
       <h2>Favorite Movies</h2>
       <!-- show message only if no movies in favorites -->
-      <div *ngIf="FavoriteMovies.length === 0" style="font-size:18px;">
+      <div *ngIf="favoriteMovies.length === 0" style="font-size:18px;">
         <p>You don't have any favorite movies yet!</p>
       </div>
     </div>
     <!-- movie cards displaying user's favorited movies -->
     <div class="movie-card-container">
-      <mat-card *ngFor="let movie of FavoriteMovies;" class="movie-cards">
-        <img mat-card-image src={{movie.ImageUrl}} alt={{movie.Title}}/>
-        <mat-card-actions>
+      <mat-card *ngFor="let movie of favoriteMovies;" class="movie-cards">
+          <img mat-card-image src={{movie.ImageURL}} alt={{movie.Title}} />
+          <mat-card-header class="movie-header">
+            <mat-card-title>{{movie.Title}}</mat-card-title>
+            <!-- <mat-card-subtitle>Directed by: {{movie.Director.Name}}</mat-card-subtitle> -->
+          </mat-card-header>
+        <mat-card-actions class="actions">
           <button
             mat-button
             color="primary"
+            (click)="openSynopsisDialog(movie.Description)"
           >
             Sypnosis
           </button>
           <button
             mat-button
             color="primary"
+            (click)="openGenreDialog(movie.Genre.Name, movie.Genre.Description)"
           >
             Genre
           </button>
           <button
             mat-button
             color="primary"
+            (click)="openDirectorDialog(movie.Director.Name, movie.Director.Bio, movie.Director.Birthyear, movie.Director.Deathyear)"
           >
             Director
           </button>
-          <button>
+          <button
+            mat-icon-button
+            color="warn"
+            (click)="removeFav(movie)"
+          >
             <mat-icon>favorite</mat-icon>
           </button>
         </mat-card-actions>
+      
+
       </mat-card>
     </div>
   </div>

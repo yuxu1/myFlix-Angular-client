@@ -75,18 +75,19 @@ export class MovieCardComponent implements OnInit {
   }
 
   //function to check if a movie is favorited by the user
-  isFavorited(movieID: string): boolean {
-    return this.user.FavoriteMovies.indexOf(movieID) >= 0;
+  isFavorited(movie: any): boolean {
+    return this.user.FavoriteMovies.indexOf(movie._id) >= 0;
   }
 
   //function to add or remove a movie to/from favorites by clicking icon button
-  toggleFavorite(movie: string): void {
+  toggleFavorite(movie: any): void {
     const isFavorited = this.isFavorited(movie);
     isFavorited ? this.removeFavMovie(movie): this.addFavMovie(movie);
   }
 
   //function to remove a movie from favorites
   removeFavMovie(movie: any): void {
+    this.user = this.fetchApiData.getUser();
     this.fetchApiData.removeFavorites(movie).subscribe((result) => {
       localStorage.setItem('user',JSON.stringify(result));
       this.getFavoriteMovies();
