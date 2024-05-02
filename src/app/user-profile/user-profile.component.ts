@@ -39,7 +39,6 @@ export class UserProfileComponent implements OnInit{
     this.userData.Username = this.user.Username;
     this.userData.Email = this.user.Email;
     this.userData.Birthday = this.user.Birthday;
-    this.userData.Password = this.user.Password;
     this.userData.FavoriteMovies = this.user.FavoriteMovies;
     this.fetchApiData.getAllMovies().subscribe((result) => {
       this.favoriteMovies = result.filter((movie: any) => this.user.FavoriteMovies.includes(movie._id));
